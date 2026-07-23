@@ -1,3 +1,5 @@
+/* ---------- GENERAL ---------- */
+
 *{
     margin:0;
     padding:0;
@@ -7,85 +9,81 @@
 body{
 
     font-family:'Poppins',sans-serif;
-
-    background:#fdeff4;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    height:100vh;
-
+    background:#f8edf2;
     overflow:hidden;
-
+    height:100vh;
 }
+
+/* ---------- PAGES ---------- */
 
 .page{
 
-    position:absolute;
-
     width:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    transition:.5s;
-
-}
-
-.hidden{
+    height:100vh;
 
     display:none;
 
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
 }
+
+.page.active{
+
+    display:flex;
+
+}
+
+/* ---------- CARD ---------- */
 
 .card{
 
-    background:white;
-
     width:360px;
+    max-width:100%;
 
-    padding:45px;
+    background:white;
 
     border-radius:20px;
 
+    padding:40px 30px;
+
     text-align:center;
 
-    box-shadow:0 15px 35px rgba(0,0,0,.08);
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
 
 }
 
+/* ---------- TEXT ---------- */
+
 .heart{
 
-    font-size:42px;
+    font-size:40px;
 
     margin-bottom:15px;
+
 }
 
 h1{
 
     font-size:34px;
 
-    margin-bottom:15px;
+    margin-bottom:18px;
 
 }
 
 h2{
 
-    margin-bottom:15px;
+    margin-bottom:25px;
 
 }
 
 .subtitle{
 
-    color:#d66b93;
+    color:#d26d93;
 
-    margin-bottom:20px;
+    margin-bottom:18px;
 
 }
 
@@ -99,30 +97,125 @@ h2{
 
 }
 
+/* ---------- BUTTON ---------- */
+
 button{
 
-    background:#ea7ca8;
+    background:#e67ca5;
 
     color:white;
 
     border:none;
 
-    padding:14px 35px;
+    border-radius:50px;
 
-    border-radius:40px;
+    padding:14px 30px;
 
     font-size:16px;
 
     cursor:pointer;
 
-    transition:.3s;
+    transition:.25s;
 
 }
 
 button:hover{
 
-    background:#dd5e91;
+    background:#d86391;
 
-    transform:translateY(-2px);
+}
+
+/* ---------- PROGRESS ---------- */
+
+.progress{
+
+    margin-top:35px;
+
+    color:#999;
+
+    font-size:13px;
+
+}
+
+/* ---------- PASSCODE ---------- */
+
+#codeDisplay{
+
+    font-size:34px;
+
+    letter-spacing:10px;
+
+    margin-bottom:30px;
+
+}
+
+/* ---------- KEYPAD ---------- */
+
+.keypad{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,70px);
+
+    justify-content:center;
+
+    gap:12px;
+
+}
+
+.keypad button{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    font-size:22px;
+
+}
+
+#delete{
+
+    background:#999;
+
+}
+
+/* ---------- ERROR ---------- */
+
+#error{
+
+    color:#d9534f;
+
+    height:25px;
+
+    margin-top:18px;
+
+    font-size:14px;
+
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:450px){
+
+.card{
+
+    padding:30px 20px;
+
+}
+
+.keypad{
+
+grid-template-columns:repeat(3,60px);
+
+}
+
+.keypad button{
+
+width:60px;
+height:60px;
+
+}
 
 }

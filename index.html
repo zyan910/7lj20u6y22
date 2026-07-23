@@ -3,57 +3,122 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>For My Love ❤️</title>
+<title>For My Favorite Person ❤️</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<div id="page1" class="page">
+<div class="background"></div>
 
-    <div class="card">
+<!-- PAGE 1 -->
 
-        <div class="heart">❤️</div>
+<section id="welcome" class="page active">
 
-        <h1>Happy Birthday</h1>
+<div class="card">
 
-        <p class="subtitle">
-            I made a little surprise just for you.
-        </p>
+<div class="heart">
+❤️
+</div>
 
-        <p class="message">
-            I hope this makes you smile
-            as much as you make me smile.
-        </p>
+<h1>Happy Birthday</h1>
 
-        <button id="beginBtn">
-            Begin
-        </button>
+<p class="subtitle">
 
-    </div>
+I've been working on something
+special for you.
+
+</p>
+
+<p class="message">
+
+I hope every little page
+makes you smile.
+
+Take your time.
+
+Enjoy ❤️
+
+</p>
+
+<button id="continueBtn">
+
+Continue →
+
+</button>
+
+<div class="progress">
+
+1 / 5
 
 </div>
 
-<div id="page2" class="page hidden">
+</div>
 
-    <div class="card">
+</section>
 
-        <div class="heart">❤️</div>
+<!-- PAGE 2 -->
 
-        <h2>Passcode Page</h2>
+<section id="passcode" class="page">
 
-        <p>This is where the passcode will go next.</p>
+<div class="card">
 
-    </div>
+<div class="heart">
+❤️
+</div>
+
+<h2>
+
+Enter our special date
+
+</h2>
+
+<div id="codeDisplay">
+
+♡ ♡ ♡ ♡
 
 </div>
+
+<div class="keypad">
+
+<button class="num">1</button>
+<button class="num">2</button>
+<button class="num">3</button>
+
+<button class="num">4</button>
+<button class="num">5</button>
+<button class="num">6</button>
+
+<button class="num">7</button>
+<button class="num">8</button>
+<button class="num">9</button>
+
+<button id="delete">⌫</button>
+<button class="num">0</button>
+
+</div>
+
+<p id="error"></p>
+
+<div class="progress">
+
+2 / 5
+
+</div>
+
+</div>
+
+</section>
 
 <script src="script.js"></script>
 
