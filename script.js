@@ -165,3 +165,97 @@ if(memoriesBtn){
     });
 
 }
+
+// ==========================
+// GALLERY
+// ==========================
+
+const photos = [
+
+"photos/1.jpg",
+"photos/2.jpg",
+"photos/3.jpg",
+"photos/4.jpg",
+"photos/5.jpg",
+"photos/6.jpg",
+"photos/7.jpg",
+"photos/8.jpg",
+"photos/9.jpg",
+"photos/10.jpg"
+
+];
+
+const captions = [
+
+"One of my favourite memories ❤️",
+"This day still makes me smile.",
+"I wish we could relive this.",
+"You looked beautiful here.",
+"A memory I'll always treasure.",
+"Another unforgettable day.",
+"I still laugh at this one.",
+"Forever one of my favourites.",
+"I can't wait to make more memories.",
+"And this is only the beginning ❤️"
+
+];
+
+let currentPhoto = 0;
+
+const galleryImage=document.getElementById("galleryImage");
+const galleryCaption=document.getElementById("galleryCaption");
+const photoCounter=document.getElementById("photoCounter");
+
+const dotsContainer=document.getElementById("galleryDots");
+
+for(let i=0;i<photos.length;i++){
+
+    const dot=document.createElement("div");
+
+    dot.className="dot";
+
+    dotsContainer.appendChild(dot);
+
+}
+
+const dots=document.querySelectorAll(".dot");
+
+function updateGallery(){
+
+    galleryImage.src=photos[currentPhoto];
+
+    galleryCaption.innerText=captions[currentPhoto];
+
+    photoCounter.innerText=`${currentPhoto+1} / ${photos.length}`;
+
+    dots.forEach(dot=>dot.classList.remove("active"));
+
+    dots[currentPhoto].classList.add("active");
+
+}
+
+document.getElementById("nextBtn").onclick=()=>{
+
+    if(currentPhoto<photos.length-1){
+
+        currentPhoto++;
+
+        updateGallery();
+
+    }
+
+}
+
+document.getElementById("prevBtn").onclick=()=>{
+
+    if(currentPhoto>0){
+
+        currentPhoto--;
+
+        updateGallery();
+
+    }
+
+}
+
+updateGallery();
