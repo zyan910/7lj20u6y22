@@ -152,3 +152,16 @@ document.getElementById("letter").classList.add("active");
 
 updateDisplay();
 
+const memoriesBtn = document.getElementById("memoriesBtn");
+
+if(memoriesBtn){
+
+    memoriesBtn.addEventListener("click", ()=>{
+
+        document.getElementById("letter").classList.remove("active");
+
+        document.getElementById("gallery").classList.add("active");
+
+    });
+
+}

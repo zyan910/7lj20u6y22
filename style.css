@@ -255,3 +255,24 @@ h2{
 
 }
 
+.letter-box{
+
+    background:#fafafa;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    text-align:left;
+
+    line-height:1.8;
+
+    max-height:300px;
+
+    overflow-y:auto;
+
+    margin:25px 0;
+
+}
+
+}
