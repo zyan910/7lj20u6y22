@@ -155,23 +155,31 @@ button:hover{
 
     display:grid;
 
-    grid-template-columns:repeat(3,70px);
+    grid-template-columns:repeat(3,58px);
 
     justify-content:center;
 
-    gap:12px;
+    gap:14px;
+
+    margin:20px auto;
 
 }
 
 .keypad button{
 
-    width:70px;
+    width:58px;
 
-    height:70px;
+    height:58px;
 
     border-radius:50%;
 
-    font-size:22px;
+    font-size:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 
 }
 
@@ -201,20 +209,49 @@ button:hover{
 
 .card{
 
-    padding:30px 20px;
+    width:92%;
+
+    max-width:340px;
+
+    padding:28px 22px;
+
+}
+
+h1{
+
+    font-size:30px;
+
+}
+
+h2{
+
+    font-size:24px;
+
+}
+
+#codeDisplay{
+
+    font-size:28px;
+
+    letter-spacing:8px;
 
 }
 
 .keypad{
 
-grid-template-columns:repeat(3,60px);
+    grid-template-columns:repeat(3,56px);
+
+    gap:12px;
 
 }
 
 .keypad button{
 
-width:60px;
-height:60px;
+    width:56px;
+
+    height:56px;
+
+    font-size:19px;
 
 }
 

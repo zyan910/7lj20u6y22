@@ -66,21 +66,31 @@ function updateDisplay(){
 // NUMBER BUTTONS
 // --------------------
 
-numberButtons.forEach(button=>{
+numberButtons.forEach(button => {
 
-    button.addEventListener("click",()=>{
+    function pressButton() {
 
-        if(enteredCode.length >= 4) return;
+        if (enteredCode.length >= 4) return;
 
-        enteredCode += button.innerText;
+        enteredCode += button.textContent.trim();
 
         updateDisplay();
 
-        if(enteredCode.length === 4){
+        if (enteredCode.length === 4) {
 
             checkCode();
 
         }
+
+    }
+
+    button.addEventListener("click", pressButton);
+
+    button.addEventListener("touchstart", function(e){
+
+        e.preventDefault();
+
+        pressButton();
 
     });
 
@@ -90,11 +100,21 @@ numberButtons.forEach(button=>{
 // DELETE
 // --------------------
 
-deleteButton.addEventListener("click",()=>{
+function deleteDigit(){
 
     enteredCode = enteredCode.slice(0,-1);
 
     updateDisplay();
+
+}
+
+deleteButton.addEventListener("click", deleteDigit);
+
+deleteButton.addEventListener("touchstart", function(e){
+
+    e.preventDefault();
+
+    deleteDigit();
 
 });
 
