@@ -151,3 +151,30 @@ document.getElementById("puzzle").classList.add("active");
 // --------------------
 
 updateDisplay();
+
+// --------------------
+// CREATE PUZZLE
+// --------------------
+
+const puzzleGrid = document.getElementById("puzzleGrid");
+
+if(puzzleGrid){
+
+    for(let row=0; row<4; row++){
+
+        for(let col=0; col<4; col++){
+
+            const tile = document.createElement("div");
+
+            tile.classList.add("tile");
+
+            tile.style.backgroundPosition =
+                `${-col*80}px ${-row*80}px`;
+
+            puzzleGrid.appendChild(tile);
+
+        }
+
+    }
+
+}
