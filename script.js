@@ -126,11 +126,9 @@ function checkCode(){
 
     if(enteredCode === CORRECT_CODE){
 
-        setTimeout(()=>{
+        passcodePage.classList.remove("active");
 
-            alert("Correct! 🎉\n\nNext milestone: Puzzle Page");
-
-        },300);
+document.getElementById("puzzle").classList.add("active");
 
     }else{
 
