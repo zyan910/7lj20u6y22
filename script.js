@@ -34,6 +34,8 @@ continueBtn.addEventListener("click", () => {
     welcomePage.classList.remove("active");
     passcodePage.classList.add("active");
 
+    updateProgress(1);
+
 });
 
 // --------------------
@@ -130,6 +132,8 @@ function checkCode(){
 
 document.getElementById("letter").classList.add("active");
 
+updateProgress(2);
+
     }else{
 
         error.innerText = "That's not our special date ❤️";
@@ -156,13 +160,15 @@ const memoriesBtn = document.getElementById("memoriesBtn");
 
 if(memoriesBtn){
 
-    memoriesBtn.addEventListener("click", ()=>{
+    memoriesBtn.addEventListener("click",()=>{
 
-        document.getElementById("letter").classList.remove("active");
+    document.getElementById("letter").classList.remove("active");
 
-        document.getElementById("gallery").classList.add("active");
+    document.getElementById("gallery").classList.add("active");
 
-    });
+    updateProgress(3);
+
+});
 
 }
 
@@ -248,6 +254,8 @@ document.getElementById("nextBtn").onclick = () => {
 
         document.getElementById("final").classList.add("active");
 
+        updateProgress(4);
+
     }
 
 }
@@ -284,6 +292,32 @@ if(restartBtn){
 
         updateDisplay();
 
+        updateProgress(0);
+
     });
 
 }
+
+const progressDots = document.querySelectorAll("#progressBar .dot");
+const progressLines = document.querySelectorAll("#progressBar .line");
+
+function updateProgress(step){
+
+    progressDots.forEach(dot => dot.classList.remove("active"));
+    progressLines.forEach(line => line.classList.remove("active"));
+
+    for(let i = 0; i <= step; i++){
+
+        progressDots[i].classList.add("active");
+
+    }
+
+    for(let i = 0; i < step; i++){
+
+        progressLines[i].classList.add("active");
+
+    }
+
+}
+
+updateProgress(0);

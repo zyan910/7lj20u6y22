@@ -31,16 +31,13 @@ body{
     font-family:'Poppins',sans-serif;
 
     background:
+        radial-gradient(circle at top left,#ffe8f1 0%,transparent 35%),
+        radial-gradient(circle at bottom right,#ffe8f1 0%,transparent 30%),
+        var(--background);
 
-    radial-gradient(circle at top left,#ffe8f1 0%,transparent 35%),
+    min-height:100vh;
 
-    radial-gradient(circle at bottom right,#ffe8f1 0%,transparent 30%),
-
-    var(--background);
-
-    overflow:hidden;
-
-    height:100vh;
+    overflow-x:hidden;
 
 }
 
@@ -49,14 +46,16 @@ body{
 .page{
 
     width:100%;
-    height:100vh;
+
+    min-height:100vh;
 
     display:none;
 
     justify-content:center;
+
     align-items:center;
 
-    padding:20px;
+    padding:40px 20px;
 
 }
 
@@ -468,5 +467,89 @@ h2{
 height:280px;
 
 }
+
+}
+
+#letter{
+
+    align-items:flex-start;
+
+    padding-top:50px;
+
+    padding-bottom:50px;
+
+}
+
+#gallery{
+
+    align-items:flex-start;
+
+    padding-top:50px;
+
+    padding-bottom:50px;
+
+}
+
+/* ===========================
+   GLOBAL PROGRESS
+=========================== */
+
+#progressBar{
+
+    position:fixed;
+
+    top:25px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    z-index:1000;
+
+}
+
+#progressBar .dot{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:#d8d8d8;
+
+    transition:.35s;
+
+}
+
+#progressBar .dot.active{
+
+    background:var(--primary);
+
+    transform:scale(1.2);
+
+}
+
+.line{
+
+    width:26px;
+
+    height:2px;
+
+    background:#d8d8d8;
+
+    transition:.35s;
+
+}
+
+.line.active{
+
+    background:var(--primary);
 
 }
