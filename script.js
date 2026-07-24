@@ -234,13 +234,19 @@ function updateGallery(){
 
 }
 
-document.getElementById("nextBtn").onclick=()=>{
+document.getElementById("nextBtn").onclick = () => {
 
-    if(currentPhoto<photos.length-1){
+    if(currentPhoto < photos.length - 1){
 
         currentPhoto++;
 
         updateGallery();
+
+    }else{
+
+        document.getElementById("gallery").classList.remove("active");
+
+        document.getElementById("final").classList.add("active");
 
     }
 
@@ -259,3 +265,25 @@ document.getElementById("prevBtn").onclick=()=>{
 }
 
 updateGallery();
+
+const restartBtn = document.getElementById("restartBtn");
+
+if(restartBtn){
+
+    restartBtn.addEventListener("click",()=>{
+
+        document.getElementById("final").classList.remove("active");
+
+        document.getElementById("welcome").classList.add("active");
+
+        currentPhoto = 0;
+
+        updateGallery();
+
+        enteredCode = "";
+
+        updateDisplay();
+
+    });
+
+}
