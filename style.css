@@ -49,7 +49,7 @@ body{
 
     min-height:100vh;
 
-    display:none;
+    display:flex;
 
     justify-content:center;
 
@@ -57,11 +57,27 @@ body{
 
     padding:40px 20px;
 
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+    position:absolute;
+
+    inset:0;
+
+    transition:opacity .45s ease;
+
 }
 
 .page.active{
 
-    display:flex;
+    opacity:1;
+
+    visibility:visible;
+
+    pointer-events:auto;
 
 }
 
@@ -430,36 +446,6 @@ h2{
 
 }
 
-#galleryDots{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:8px;
-
-    margin-bottom:15px;
-
-}
-
-.dot{
-
-    width:10px;
-
-    height:10px;
-
-    border-radius:50%;
-
-    background:#ddd;
-
-}
-
-.dot.active{
-
-    background:#d96c94;
-
-}
-
 @media(max-width:450px){
 
 #galleryImage{
@@ -494,25 +480,6 @@ height:280px;
    GLOBAL PROGRESS
 =========================== */
 
-#progressBar{
-
-    position:fixed;
-
-    top:25px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    z-index:1000;
-
-}
 
 #progressBar .dot{
 
@@ -533,23 +500,5 @@ height:280px;
     background:var(--primary);
 
     transform:scale(1.2);
-
-}
-
-.line{
-
-    width:26px;
-
-    height:2px;
-
-    background:#d8d8d8;
-
-    transition:.35s;
-
-}
-
-.line.active{
-
-    background:var(--primary);
 
 }
