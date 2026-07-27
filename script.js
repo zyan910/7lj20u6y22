@@ -1,84 +1,139 @@
-// --------------------
+// ======================================
 // CONFIG
-// --------------------
+// ======================================
 
-const CORRECT_CODE = "1234";   // Change this later
+const CORRECT_CODE = "1234"; // Change later
 
-// --------------------
-// PAGE ELEMENTS
-// --------------------
+// ======================================
+// PAGES
+// ======================================
 
-const welcomePage = document.getElementById("welcome");
-const passcodePage = document.getElementById("passcode");
+const pages = {
 
-const continueBtn = document.getElementById("continueBtn");
+    welcome: document.getElementById("welcome"),
+    passcode: document.getElementById("passcode"),
+    letter: document.getElementById("letter"),
+    gallery: document.getElementById("gallery"),
+    final: document.getElementById("final")
 
-const codeDisplay = document.getElementById("codeDisplay");
-const error = document.getElementById("error");
+};
 
-const numberButtons = document.querySelectorAll(".num");
-const deleteButton = document.getElementById("delete");
+// ======================================
+// SHOW PAGE
+// ======================================
 
-// --------------------
-// VARIABLES
-// --------------------
+function showPage(pageName){
 
-let enteredCode = "";
+    Object.values(pages).forEach(page=>{
 
-// --------------------
-// PAGE NAVIGATION
-// --------------------
+        page.classList.remove("active");
 
-continueBtn.addEventListener("click", () => {
+    });
 
-    welcomePage.classList.remove("active");
-    passcodePage.classList.add("active");
+    pages[pageName].classList.add("active");
 
-    updateProgress(1);
+    window.scrollTo({
 
-});
+        top:0,
+        behavior:"smooth"
 
-// --------------------
-// UPDATE HEARTS
-// --------------------
-
-function updateDisplay(){
-
-    let hearts = "";
-
-    for(let i=0;i<4;i++){
-
-        if(i < enteredCode.length){
-
-            hearts += "❤️ ";
-
-        }else{
-
-            hearts += "♡ ";
-
-        }
-
-    }
-
-    codeDisplay.innerHTML = hearts;
+    });
 
 }
 
-// --------------------
-// NUMBER BUTTONS
-// --------------------
+// ======================================
+// BUTTONS
+// ======================================
 
-numberButtons.forEach(button => {
+document.getElementById("continueBtn").addEventListener("click",()=>{
 
-    function pressButton() {
+    showPage("passcode");
 
-        if (enteredCode.length >= 4) return;
+});
+
+document.getElementById("memoriesBtn").addEventListener("click",()=>{
+
+    showPage("gallery");
+
+});
+
+document.getElementById("restartBtn").addEventListener("click",()=>{
+
+    enteredCode="";
+
+    updateDisplay();
+
+    currentPhoto=0;
+
+    updateGallery();
+
+    showPage("welcome");
+
+});
+
+// ======================================
+// PASSCODE
+// ======================================
+
+let enteredCode="";
+
+const codeDisplay=document.getElementById("codeDisplay");
+
+const error=document.getElementById("error");
+
+function updateDisplay(){
+
+    let display="";
+
+    for(let i=0;i<4;i++){
+
+        display += i<enteredCode.length ? "❤️ " : "♡ ";
+
+    }
+
+    codeDisplay.innerHTML=display;
+
+}
+
+function checkCode(){
+
+    if(enteredCode===CORRECT_CODE){
+
+        enteredCode="";
+
+        updateDisplay();
+
+        showPage("letter");
+
+        return;
+
+    }
+
+    error.innerText="That's not our special date ❤️";
+
+    setTimeout(()=>{
+
+        enteredCode="";
+
+        updateDisplay();
+
+        error.innerText="";
+
+    },1000);
+
+}
+
+document.querySelectorAll(".num").forEach(button=>{
+
+    function press(){
+
+        if(enteredCode.length>=4) return;
 
         enteredCode += button.textContent.trim();
 
         updateDisplay();
 
-        if (enteredCode.length === 4) {
+        if(enteredCode.length===4){
 
             checkCode();
 
@@ -86,33 +141,29 @@ numberButtons.forEach(button => {
 
     }
 
-    button.addEventListener("click", pressButton);
+    button.addEventListener("click",press);
 
-    button.addEventListener("touchstart", function(e){
+    button.addEventListener("touchstart",e=>{
 
         e.preventDefault();
 
-        pressButton();
+        press();
 
     });
 
 });
 
-// --------------------
-// DELETE
-// --------------------
-
 function deleteDigit(){
 
-    enteredCode = enteredCode.slice(0,-1);
+    enteredCode=enteredCode.slice(0,-1);
 
     updateDisplay();
 
 }
 
-deleteButton.addEventListener("click", deleteDigit);
+document.getElementById("delete").addEventListener("click",deleteDigit);
 
-deleteButton.addEventListener("touchstart", function(e){
+document.getElementById("delete").addEventListener("touchstart",e=>{
 
     e.preventDefault();
 
@@ -120,127 +171,59 @@ deleteButton.addEventListener("touchstart", function(e){
 
 });
 
-// --------------------
-// CHECK CODE
-// --------------------
-
-function checkCode(){
-
-    if(enteredCode === CORRECT_CODE){
-
-        passcodePage.classList.remove("active");
-
-document.getElementById("letter").classList.add("active");
-
-updateProgress(2);
-
-    }else{
-
-        error.innerText = "That's not our special date ❤️";
-
-        setTimeout(()=>{
-
-            enteredCode = "";
-
-            updateDisplay();
-
-            error.innerText = "";
-
-        },1000);
-
-    }
-
-}
-
-// --------------------
-
 updateDisplay();
 
-const memoriesBtn = document.getElementById("memoriesBtn");
-
-if(memoriesBtn){
-
-    memoriesBtn.addEventListener("click",()=>{
-
-    document.getElementById("letter").classList.remove("active");
-
-    document.getElementById("gallery").classList.add("active");
-
-    updateProgress(3);
-
-});
-
-}
-
-// ==========================
+// ======================================
 // GALLERY
-// ==========================
+// ======================================
 
 const photos = [
-
-"photos/1.jpg",
-"photos/2.jpg",
-"photos/3.jpg",
-"photos/4.jpg",
-"photos/5.jpg",
-"photos/6.jpg",
-"photos/7.jpg",
-"photos/8.jpg",
-"photos/9.jpg",
-"photos/10.jpg"
-
+    "photos/1.jpg",
+    "photos/2.jpg",
+    "photos/3.jpg",
+    "photos/4.jpg",
+    "photos/5.jpg",
+    "photos/6.jpg",
+    "photos/7.jpg",
+    "photos/8.jpg",
+    "photos/9.jpg",
+    "photos/10.jpg"
 ];
 
 const captions = [
-
-"One of my favourite memories ❤️",
-"This day still makes me smile.",
-"I wish we could relive this.",
-"You looked beautiful here.",
-"A memory I'll always treasure.",
-"Another unforgettable day.",
-"I still laugh at this one.",
-"Forever one of my favourites.",
-"I can't wait to make more memories.",
-"And this is only the beginning ❤️"
-
+    "One of my favourite memories ❤️",
+    "This day still makes me smile.",
+    "I wish we could relive this.",
+    "You looked beautiful here.",
+    "A memory I'll always treasure.",
+    "Another unforgettable day.",
+    "I still laugh at this one.",
+    "Forever one of my favourites.",
+    "I can't wait to make more memories.",
+    "And this is only the beginning ❤️"
 ];
 
 let currentPhoto = 0;
 
-const galleryImage=document.getElementById("galleryImage");
-const galleryCaption=document.getElementById("galleryCaption");
-const photoCounter=document.getElementById("photoCounter");
-
-const dotsContainer=document.getElementById("galleryDots");
-
-for(let i=0;i<photos.length;i++){
-
-    const dot=document.createElement("div");
-
-    dot.className="dot";
-
-    dotsContainer.appendChild(dot);
-
-}
-
-const dots=document.querySelectorAll(".dot");
+const galleryImage = document.getElementById("galleryImage");
+const galleryCaption = document.getElementById("galleryCaption");
 
 function updateGallery(){
 
-    galleryImage.src=photos[currentPhoto];
+    galleryImage.classList.add("fade");
 
-    galleryCaption.innerText=captions[currentPhoto];
+    setTimeout(()=>{
 
-    photoCounter.innerText=`${currentPhoto+1} / ${photos.length}`;
+        galleryImage.src = photos[currentPhoto];
+        galleryCaption.textContent = captions[currentPhoto];
 
-    dots.forEach(dot=>dot.classList.remove("active"));
+        galleryImage.classList.remove("fade");
 
-    dots[currentPhoto].classList.add("active");
+    },200);
 
 }
 
-document.getElementById("nextBtn").onclick = () => {
+document.getElementById("nextBtn").addEventListener("click",()=>{
 
     if(currentPhoto < photos.length - 1){
 
@@ -250,19 +233,15 @@ document.getElementById("nextBtn").onclick = () => {
 
     }else{
 
-        document.getElementById("gallery").classList.remove("active");
-
-        document.getElementById("final").classList.add("active");
-
-        updateProgress(4);
+        showPage("final");
 
     }
 
-}
+});
 
-document.getElementById("prevBtn").onclick=()=>{
+document.getElementById("prevBtn").addEventListener("click",()=>{
 
-    if(currentPhoto>0){
+    if(currentPhoto > 0){
 
         currentPhoto--;
 
@@ -270,54 +249,43 @@ document.getElementById("prevBtn").onclick=()=>{
 
     }
 
-}
+});
 
 updateGallery();
 
-const restartBtn = document.getElementById("restartBtn");
+// ======================================
+// TOUCH SUPPORT
+// ======================================
 
-if(restartBtn){
+["nextBtn","prevBtn"].forEach(id=>{
 
-    restartBtn.addEventListener("click",()=>{
+    const button=document.getElementById(id);
 
-        document.getElementById("final").classList.remove("active");
+    button.addEventListener("touchstart",e=>{
 
-        document.getElementById("welcome").classList.add("active");
+        e.preventDefault();
 
-        currentPhoto = 0;
-
-        updateGallery();
-
-        enteredCode = "";
-
-        updateDisplay();
-
-        updateProgress(0);
+        button.click();
 
     });
 
-}
+});
 
-const progressDots = document.querySelectorAll("#progressBar .dot");
-const progressLines = document.querySelectorAll("#progressBar .line");
+// ======================================
+// PRELOAD IMAGES
+// ======================================
 
-function updateProgress(step){
+photos.forEach(src=>{
 
-    progressDots.forEach(dot => dot.classList.remove("active"));
-    progressLines.forEach(line => line.classList.remove("active"));
+    const img=new Image();
 
-    for(let i = 0; i <= step; i++){
+    img.src=src;
 
-        progressDots[i].classList.add("active");
+});
 
-    }
+// ======================================
+// INITIAL PAGE
+// ======================================
 
-    for(let i = 0; i < step; i++){
+showPage("welcome");
 
-        progressLines[i].classList.add("active");
-
-    }
-
-}
-
-updateProgress(0);

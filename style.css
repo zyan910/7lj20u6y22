@@ -1,4 +1,6 @@
-/* ---------- GENERAL ---------- */
+/* ===================================================
+   GENERAL
+=================================================== */
 
 :root{
 
@@ -10,44 +12,63 @@
 
     --primary-dark:#d96c94;
 
-    --text:#4d4d4d;
+    --text:#444;
 
-    --subtext:#7c7c7c;
+    --subtext:#7d7d7d;
 
     --paper:#fffdf8;
 
-    --border:#ece6da;
+    --border:#ece5db;
 
 }
 
 *{
+
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
 }
 
 body{
 
     font-family:'Poppins',sans-serif;
 
-    background:
-        radial-gradient(circle at top left,#ffe8f1 0%,transparent 35%),
-        radial-gradient(circle at bottom right,#ffe8f1 0%,transparent 30%),
-        var(--background);
+    color:var(--text);
 
-    min-height:100vh;
+    background:
+
+        radial-gradient(circle at 10% 10%, rgba(232,138,177,.15), transparent 28%),
+
+        radial-gradient(circle at 90% 90%, rgba(232,138,177,.12), transparent 30%),
+
+        radial-gradient(circle at 85% 20%, rgba(255,255,255,.45), transparent 20%),
+
+        var(--background);
 
     overflow-x:hidden;
 
+    min-height:100vh;
+
 }
 
-/* ---------- PAGES ---------- */
+/* ===================================================
+   PAGE
+=================================================== */
 
 .page{
 
-    width:100%;
-
     min-height:100vh;
+
+    width:100%;
 
     display:flex;
 
@@ -57,17 +78,23 @@ body{
 
     padding:40px 20px;
 
+    position:absolute;
+
+    inset:0;
+
     opacity:0;
 
     visibility:hidden;
 
     pointer-events:none;
 
-    position:absolute;
+    transform:translateY(12px);
 
-    inset:0;
+    transition:
 
-    transition:opacity .45s ease;
+        opacity .45s ease,
+
+        transform .45s ease;
 
 }
 
@@ -79,34 +106,95 @@ body{
 
     pointer-events:auto;
 
+    transform:translateY(0);
+
 }
 
-/* ---------- CARD ---------- */
+/* ===================================================
+   CARD
+=================================================== */
 
 .card{
 
-    width:360px;
+    width:380px;
+
     max-width:100%;
 
     background:var(--card);
 
-    border-radius:20px;
+    border-radius:24px;
 
-    padding:40px 30px;
+    padding:38px 32px;
 
     text-align:center;
 
-    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    box-shadow:
+
+        0 20px 45px rgba(0,0,0,.08);
 
 }
 
-/* ---------- TEXT ---------- */
+.letter-card{
 
-50%{
+    width:720px;
 
-transform:scale(1.08);
+    max-width:100%;
 
 }
+
+.gallery-card{
+
+    width:760px;
+
+    max-width:100%;
+
+}
+
+.final-card{
+
+    width:650px;
+
+    max-width:100%;
+
+}
+
+/* ===================================================
+   PROGRESS
+=================================================== */
+
+.stage-progress{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:14px;
+
+    margin-bottom:28px;
+
+}
+
+.mini-heart{
+
+    font-size:15px;
+
+    color:#efc7d8;
+
+    transition:.3s ease;
+
+}
+
+.mini-heart.active{
+
+    color:var(--primary);
+
+    transform:scale(1.18);
+
+}
+
+/* ===================================================
+   TYPOGRAPHY
+=================================================== */
 
 h1{
 
@@ -114,61 +202,87 @@ h1{
 
     margin-bottom:18px;
 
+    color:var(--text);
+
 }
 
 h2{
 
-    margin-bottom:25px;
+    font-size:30px;
+
+    margin-bottom:24px;
+
+    color:var(--text);
 
 }
 
 .subtitle{
 
-    color:#d26d93;
+    color:var(--primary-dark);
 
     margin-bottom:18px;
+
+    line-height:1.7;
 
 }
 
 .message{
 
-    color:#666;
+    color:var(--subtext);
 
-    line-height:1.7;
+    line-height:1.8;
 
-    margin-bottom:35px;
+    margin-bottom:34px;
 
 }
 
-/* ---------- BUTTON ---------- */
+p{
+
+    line-height:1.8;
+
+}
+
+/* ===================================================
+   BUTTONS
+=================================================== */
 
 button{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
 
     background:var(--primary);
 
     color:white;
 
-    border:none;
-
     border-radius:999px;
 
-    padding:14px 34px;
+    padding:15px 34px;
 
     font-size:16px;
 
-    font-weight:500;
+    font-weight:600;
 
-    cursor:pointer;
+    transition:
 
-    transition:.25s ease;
+        background .25s ease,
+
+        transform .25s ease,
+
+        box-shadow .25s ease;
 
 }
 
 button:hover{
 
+    background:var(--primary-dark);
+
     transform:translateY(-2px);
 
-    background:var(--primary-dark);
+    box-shadow:0 10px 25px rgba(232,138,177,.30);
 
 }
 
@@ -178,13 +292,9 @@ button:active{
 
 }
 
-button:hover{
-
-    background:#d86391;
-
-}
-
-/* ---------- PASSCODE ---------- */
+/* ===================================================
+   PASSCODE
+=================================================== */
 
 #codeDisplay{
 
@@ -192,17 +302,27 @@ button:hover{
 
     letter-spacing:10px;
 
-    margin-bottom:30px;
+    margin-bottom:28px;
 
 }
 
-/* ---------- KEYPAD ---------- */
+#error{
+
+    color:#d9534f;
+
+    min-height:24px;
+
+    margin-top:18px;
+
+    font-size:14px;
+
+}
 
 .keypad{
 
     display:grid;
 
-    grid-template-columns:repeat(3,58px);
+    grid-template-columns:repeat(3,70px);
 
     justify-content:center;
 
@@ -214,13 +334,13 @@ button:hover{
 
 .keypad button{
 
-    width:58px;
+    width:70px;
 
-    height:58px;
+    height:70px;
+
+    padding:0;
 
     border-radius:50%;
-
-    font-size:20px;
 
     display:flex;
 
@@ -228,159 +348,117 @@ button:hover{
 
     justify-content:center;
 
+    font-size:22px;
+
 }
 
 #delete{
 
-    background:#999;
+    background:#9c9c9c;
 
 }
 
-/* ---------- ERROR ---------- */
+#delete:hover{
 
-#error{
-
-    color:#d9534f;
-
-    height:25px;
-
-    margin-top:18px;
-
-    font-size:14px;
+    background:#7d7d7d;
 
 }
 
-/* ---------- MOBILE ---------- */
-
-@media(max-width:450px){
-
-.card{
-
-    width:360px;
-
-    max-width:92%;
-
-    background:var(--card);
-
-    border-radius:24px;
-
-    padding:40px 30px;
-
-    text-align:center;
-
-    box-shadow:
-
-        0 15px 45px rgba(0,0,0,.06);
-
-}
-
-h1{
-
-    font-size:30px;
-
-}
-
-h2{
-
-    font-size:24px;
-
-}
-
-#codeDisplay{
-
-    font-size:28px;
-
-    letter-spacing:8px;
-
-}
-
-.keypad{
-
-    grid-template-columns:repeat(3,56px);
-
-    gap:12px;
-
-}
-
-.keypad button{
-
-    width:56px;
-
-    height:56px;
-
-    font-size:19px;
-
-}
-
-.letter-card{
-
-    max-width:700px;
-
-}
+/* ===================================================
+   LETTER
+=================================================== */
 
 .letter-box{
 
-    background:#fffdf8;
+    background:var(--paper);
 
-    border:1px solid #ece6da;
+    border:1px solid var(--border);
 
-    border-radius:18px;
+    border-radius:20px;
 
     padding:30px;
 
     text-align:left;
 
-    line-height:1.9;
-
-    font-size:16px;
-
     color:#555;
 
-    max-height:360px;
+    line-height:1.9;
+
+    margin:28px 0;
+
+    max-height:420px;
 
     overflow-y:auto;
 
-    margin:25px 0;
-
-    box-shadow:0 5px 20px rgba(0,0,0,.05);
+    box-shadow:
+        inset 0 0 10px rgba(0,0,0,.02),
+        0 8px 24px rgba(0,0,0,.05);
 
 }
 
-/* ===========================
+.letter-box p{
+
+    font-size:16px;
+
+}
+
+.letter-box::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.letter-box::-webkit-scrollbar-thumb{
+
+    background:#e8bfd0;
+
+    border-radius:999px;
+
+}
+
+/* ===================================================
    GALLERY
-=========================== */
-
-.gallery-card{
-
-    max-width:650px;
-
-}
+=================================================== */
 
 #galleryImage{
 
     width:100%;
 
-    height:350px;
+    height:430px;
 
     object-fit:cover;
 
-    border-radius:15px;
+    border-radius:18px;
 
-    margin:25px 0;
+    background:#ececec;
 
-    background:#eee;
+    margin:28px 0 22px;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+
+}
+
+#galleryImage.fade{
+
+    opacity:0;
+
+    transform:scale(.98);
 
 }
 
 #galleryCaption{
 
+    min-height:52px;
+
     font-size:17px;
 
     color:#666;
 
-    margin-bottom:25px;
+    line-height:1.8;
 
-    min-height:45px;
+    margin-bottom:28px;
 
 }
 
@@ -390,47 +468,356 @@ h2{
 
     justify-content:space-between;
 
-    margin-bottom:20px;
+    align-items:center;
 
 }
 
 .galleryButtons button{
 
-    width:60px;
+    width:64px;
+
+    height:64px;
+
+    padding:0;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:24px;
 
 }
 
-@media(max-width:450px){
+/* ===================================================
+   FINAL PAGE
+=================================================== */
+
+.final-card .letter-box{
+
+    text-align:center;
+
+}
+
+/* ===================================================
+   SCROLLABLE PAGES
+=================================================== */
+
+#letter,
+#gallery,
+#final{
+
+    align-items:flex-start;
+
+    padding-top:60px;
+
+    padding-bottom:60px;
+
+}
+
+/* ===================================================
+   SMALL CARD
+=================================================== */
+
+.small-card{
+
+    max-width:390px;
+
+}
+
+/* ===================================================
+   ANIMATIONS
+=================================================== */
+
+@keyframes cardFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(16px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.page.active .card{
+
+    animation:cardFade .45s ease;
+
+}
+
+/* ===================================================
+   IMAGE FADE
+=================================================== */
+
+.fade-out{
+
+    opacity:0;
+
+    transform:scale(.985);
+
+}
+
+.fade-in{
+
+    opacity:1;
+
+    transform:scale(1);
+
+}
+
+/* ===================================================
+   SUBTLE DECORATION
+=================================================== */
+
+body::before,
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:280px;
+
+    height:280px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+    filter:blur(70px);
+
+}
+
+body::before{
+
+    top:-100px;
+
+    left:-80px;
+
+    background:rgba(232,138,177,.16);
+
+}
+
+body::after{
+
+    bottom:-100px;
+
+    right:-80px;
+
+    background:rgba(232,138,177,.14);
+
+}
+
+/* ===================================================
+   CARD HOVER
+=================================================== */
+
+.card{
+
+    transition:
+
+        transform .3s ease,
+
+        box-shadow .3s ease;
+
+}
+
+.card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+
+        0 22px 55px rgba(0,0,0,.10);
+
+}
+
+/* ===================================================
+   IMAGE
+=================================================== */
 
 #galleryImage{
 
-height:280px;
+    box-shadow:
+
+        0 12px 35px rgba(0,0,0,.10);
 
 }
 
-}
+/* ===================================================
+   BUTTON IMPROVEMENTS
+=================================================== */
 
-#letter{
+.galleryButtons button{
 
-    align-items:flex-start;
+    transition:
 
-    padding-top:50px;
+        transform .25s ease,
 
-    padding-bottom:50px;
+        background .25s ease,
 
-}
-
-#gallery{
-
-    align-items:flex-start;
-
-    padding-top:50px;
-
-    padding-bottom:50px;
+        box-shadow .25s ease;
 
 }
 
-/* ===========================
-   GLOBAL PROGRESS
-=========================== */
+.galleryButtons button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ===================================================
+   MOBILE
+=================================================== */
+
+@media(max-width:768px){
+
+    .letter-card{
+
+        width:100%;
+
+    }
+
+    .gallery-card{
+
+        width:100%;
+
+    }
+
+    .final-card{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .page{
+
+        padding:24px 14px;
+
+    }
+
+    .card{
+
+        padding:28px 22px;
+
+        border-radius:22px;
+
+    }
+
+    h1{
+
+        font-size:30px;
+
+    }
+
+    h2{
+
+        font-size:24px;
+
+    }
+
+    .subtitle{
+
+        font-size:15px;
+
+    }
+
+    .message{
+
+        font-size:15px;
+
+    }
+
+    #codeDisplay{
+
+        font-size:28px;
+
+        letter-spacing:8px;
+
+    }
+
+    .keypad{
+
+        grid-template-columns:repeat(3,64px);
+
+        gap:12px;
+
+    }
+
+    .keypad button{
+
+        width:64px;
+
+        height:64px;
+
+        font-size:20px;
+
+    }
+
+    #galleryImage{
+
+        height:300px;
+
+    }
+
+    .galleryButtons button{
+
+        width:58px;
+
+        height:58px;
+
+    }
+
+    .letter-box{
+
+        padding:22px;
+
+        max-height:360px;
+
+    }
+
+}
+
+/* ===================================================
+   SMALL DETAILS
+=================================================== */
+
+img{
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+}
+
+button{
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+.stage-progress{
+
+    user-select:none;
+
+}
 
