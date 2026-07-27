@@ -2,7 +2,7 @@
 // CONFIG
 // ======================================
 
-const CORRECT_CODE = "1234"; // Change later
+const CORRECT_CODE = "2108"; // Change later
 
 // ======================================
 // PAGES
