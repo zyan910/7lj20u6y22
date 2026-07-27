@@ -102,29 +102,9 @@ body{
 
 /* ---------- TEXT ---------- */
 
-.heart{
-
-    font-size:52px;
-
-    margin-bottom:18px;
-
-    animation:heartbeat 3s infinite;
-
-}
-
-@keyframes heartbeat{
-
-0%,100%{
-
-transform:scale(1);
-
-}
-
 50%{
 
 transform:scale(1.08);
-
-}
 
 }
 
@@ -201,18 +181,6 @@ button:active{
 button:hover{
 
     background:#d86391;
-
-}
-
-/* ---------- PROGRESS ---------- */
-
-.progress{
-
-    margin-top:35px;
-
-    color:#999;
-
-    font-size:13px;
 
 }
 
@@ -378,20 +346,6 @@ h2{
 
 }
 
-.letter-box{
-
-    background:var(--paper);
-
-    border:1px solid var(--border);
-
-    box-shadow:
-
-    inset 0 0 10px rgba(0,0,0,.02);
-
-}
-
-}
-
 /* ===========================
    GALLERY
 =========================== */
@@ -480,25 +434,3 @@ height:280px;
    GLOBAL PROGRESS
 =========================== */
 
-
-#progressBar .dot{
-
-    width:12px;
-
-    height:12px;
-
-    border-radius:50%;
-
-    background:#d8d8d8;
-
-    transition:.35s;
-
-}
-
-#progressBar .dot.active{
-
-    background:var(--primary);
-
-    transform:scale(1.2);
-
-}
