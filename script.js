@@ -59,13 +59,9 @@ document.getElementById("memoriesBtn").addEventListener("click",()=>{
 
 document.getElementById("restartBtn").addEventListener("click",()=>{
 
-    enteredCode="";
+    enteredCode = "";
 
     updateDisplay();
-
-    currentPhoto=0;
-
-    updateGallery();
 
     showPage("welcome");
 
@@ -174,112 +170,12 @@ document.getElementById("delete").addEventListener("touchstart",e=>{
 updateDisplay();
 
 // ======================================
-// GALLERY
+// MEMORY WALL
 // ======================================
 
-const photos = [
-    "photos/1.jpg",
-    "photos/2.jpg",
-    "photos/3.jpg",
-    "photos/4.jpg",
-    "photos/5.jpg",
-    "photos/6.jpg",
-    "photos/7.jpg",
-    "photos/8.jpg",
-    "photos/9.jpg",
-    "photos/10.jpg"
-];
+document.getElementById("finishBtn").addEventListener("click",()=>{
 
-const captions = [
-    "One of my favourite memories ❤️",
-    "This day still makes me smile.",
-    "I wish we could relive this.",
-    "You looked beautiful here.",
-    "A memory I'll always treasure.",
-    "Another unforgettable day.",
-    "I still laugh at this one.",
-    "Forever one of my favourites.",
-    "I can't wait to make more memories.",
-    "And this is only the beginning ❤️"
-];
-
-let currentPhoto = 0;
-
-const galleryImage = document.getElementById("galleryImage");
-const galleryCaption = document.getElementById("galleryCaption");
-
-function updateGallery(){
-
-    galleryImage.classList.add("fade");
-
-    setTimeout(()=>{
-
-        galleryImage.src = photos[currentPhoto];
-        galleryCaption.textContent = captions[currentPhoto];
-
-        galleryImage.classList.remove("fade");
-
-    },200);
-
-}
-
-document.getElementById("nextBtn").addEventListener("click",()=>{
-
-    if(currentPhoto < photos.length - 1){
-
-        currentPhoto++;
-
-        updateGallery();
-
-    }else{
-
-        showPage("final");
-
-    }
-
-});
-
-document.getElementById("prevBtn").addEventListener("click",()=>{
-
-    if(currentPhoto > 0){
-
-        currentPhoto--;
-
-        updateGallery();
-
-    }
-
-});
-
-updateGallery();
-
-// ======================================
-// TOUCH SUPPORT
-// ======================================
-
-["nextBtn","prevBtn"].forEach(id=>{
-
-    const button=document.getElementById(id);
-
-    button.addEventListener("touchstart",e=>{
-
-        e.preventDefault();
-
-        button.click();
-
-    });
-
-});
-
-// ======================================
-// PRELOAD IMAGES
-// ======================================
-
-photos.forEach(src=>{
-
-    const img=new Image();
-
-    img.src=src;
+    showPage("final");
 
 });
 
@@ -288,4 +184,32 @@ photos.forEach(src=>{
 // ======================================
 
 showPage("welcome");
+
+// ======================================
+// POLAROID ANIMATION
+// ======================================
+
+const polaroids = document.querySelectorAll(".polaroid");
+
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("show");
+
+        }
+
+    });
+
+},{
+    threshold:0.15
+});
+
+polaroids.forEach(photo=>{
+
+    observer.observe(photo);
+
+});
 
