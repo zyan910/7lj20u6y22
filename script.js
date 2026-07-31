@@ -2,7 +2,7 @@
 // CONFIG
 // ======================================
 
-const CORRECT_CODE = "2108"; // Change later
+const CORRECT_CODE = "2108";
 
 // ======================================
 // PAGES
@@ -190,6 +190,54 @@ document.getElementById("finishBtn").addEventListener("click",()=>{
 showPage("welcome");
 
 // ======================================
+// PETAL ANIMATION
+// ======================================
+
+function playPetals(callback){
+
+    const container = document.getElementById("petalContainer");
+
+    container.innerHTML = "";
+
+    for(let i=0;i<25;i++){
+
+        const petal = document.createElement("div");
+
+        petal.className = "petal";
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 350 + Math.random() * 250;
+
+        petal.style.left = "50%";
+        petal.style.top = "50%";
+
+        petal.style.setProperty("--x",
+            Math.cos(angle) * distance + "px");
+
+        petal.style.setProperty("--y",
+            Math.sin(angle) * distance + "px");
+
+        petal.style.setProperty("--r",
+            (Math.random()*720-360)+"deg");
+
+        petal.style.animationDelay =
+            (Math.random()*0.2)+"s";
+
+        container.appendChild(petal);
+
+    }
+
+    setTimeout(()=>{
+
+        container.innerHTML="";
+
+        callback();
+
+    },2200);
+
+}
+
+// ======================================
 // POLAROID ANIMATION
 // ======================================
 
@@ -218,4 +266,3 @@ polaroids.forEach(photo=>{
 });
 
 
-aaa
