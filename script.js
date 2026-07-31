@@ -99,11 +99,7 @@ function checkCode(){
 
         updateDisplay();
 
-        playPetals(()=>{
-
-            showPage("letter");
-
-        });
+        playPetals(()=>{});
 
         return;
 
@@ -190,38 +186,82 @@ document.getElementById("finishBtn").addEventListener("click",()=>{
 showPage("welcome");
 
 // ======================================
-// PETAL ANIMATION
+// CINEMATIC BLOOM TRANSITION
 // ======================================
 
 function playPetals(callback){
 
-    const container = document.getElementById("petalContainer");
+    const overlay=document.getElementById("transitionOverlay");
+    const container=document.getElementById("petalContainer");
+    const card=document.getElementById("passcodeCard");
 
-    container.innerHTML = "";
+    overlay.classList.add("active");
 
-    for(let i=0;i<25;i++){
+    card.classList.add("hide");
 
-        const petal = document.createElement("div");
+    container.innerHTML="";
 
-        petal.className = "petal";
+    const petals=8;
 
-        const angle = Math.random() * Math.PI * 2;
-        const distance = 350 + Math.random() * 250;
+    for(let i=0;i<petals;i++){
 
-        petal.style.left = "50%";
-        petal.style.top = "50%";
+        const petal=document.createElement("div");
 
-        petal.style.setProperty("--x",
-            Math.cos(angle) * distance + "px");
+        petal.className="petal";
 
-        petal.style.setProperty("--y",
-            Math.sin(angle) * distance + "px");
+        const angle=(360/petals)*i+(Math.random()*18-9);
 
-        petal.style.setProperty("--r",
-            (Math.random()*720-360)+"deg");
+        const distance=420;
 
-        petal.style.animationDelay =
-            (Math.random()*0.2)+"s";
+        const x=Math.cos(angle*Math.PI/180)*distance;
+        const y=Math.sin(angle*Math.PI/180)*distance;
+
+        petal.style.setProperty("--x",x+"px");
+        petal.style.setProperty("--y",y+"px");
+
+        petal.style.setProperty(
+            "--r",
+            (Math.random()*240-120)+"deg"
+        );
+
+        petal.innerHTML=`
+
+<svg viewBox="0 0 200 200">
+
+<defs>
+
+<radialGradient id="g${i}" cx="45%" cy="35%">
+
+<stop offset="0%" stop-color="#ffeef6"/>
+
+<stop offset="65%" stop-color="#f7bfd6"/>
+
+<stop offset="100%" stop-color="#e88ab1"/>
+
+</radialGradient>
+
+</defs>
+
+<path
+fill="url(#g${i})"
+
+d="M100 22
+
+C130 15 164 42 171 78
+
+C178 112 155 147 122 176
+
+C112 184 101 188 100 188
+
+C99 188 88 184 78 176
+
+C45 147 22 112 29 78
+
+C36 42 70 15 100 22Z"/>
+
+</svg>
+
+`;
 
         container.appendChild(petal);
 
@@ -229,11 +269,21 @@ function playPetals(callback){
 
     setTimeout(()=>{
 
+        showPage("letter");
+
+    },900);
+
+    setTimeout(()=>{
+
+        overlay.classList.remove("active");
+
         container.innerHTML="";
+
+        card.classList.remove("hide");
 
         callback();
 
-    },2200);
+    },2100);
 
 }
 
