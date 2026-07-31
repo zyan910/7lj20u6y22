@@ -109,7 +109,7 @@ function checkCode(){
 
     }
 
-    error.innerText="That's not our special date ❤️";
+    error.innerText="oops that's not our date ❤️";
 
     setTimeout(()=>{
 
