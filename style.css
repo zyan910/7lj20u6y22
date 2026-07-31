@@ -956,3 +956,70 @@ button{
 
 }
 
+/* ======================================
+   PETAL ANIMATION
+====================================== */
+
+#petalContainer{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    z-index:9999;
+
+}
+
+.petal{
+
+    position:absolute;
+
+    width:18px;
+
+    height:24px;
+
+    opacity:0;
+
+    background:linear-gradient(145deg,#ffdbe8,#e88ab1);
+
+    border-radius:70% 30% 70% 30%;
+
+    transform-origin:center;
+
+    animation:petalFly 2.2s ease-out forwards;
+
+}
+
+@keyframes petalFly{
+
+    0%{
+
+        opacity:0;
+
+        transform:translate(0,0) rotate(0deg) scale(.2);
+
+    }
+
+    10%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            translate(var(--x),var(--y))
+            rotate(var(--r))
+            scale(1);
+
+    }
+
+}
+

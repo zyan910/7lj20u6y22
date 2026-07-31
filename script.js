@@ -99,7 +99,11 @@ function checkCode(){
 
         updateDisplay();
 
-        showPage("letter");
+        playPetals(()=>{
+
+            showPage("letter");
+
+        });
 
         return;
 
